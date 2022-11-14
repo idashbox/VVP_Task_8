@@ -9,43 +9,37 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-
 public class InOutClass {
-
-    //парсинг входного/выходного пути (избавление
-    private static String parsePath(String str){
-        String path = "";
+    private static String getPut(String str){
+        String put = "";
         for(int i=2;i<str.length();i++){
-            path+=str.charAt(i);
+            put+=str.charAt(i);
         }
-        return path;
+        return put;
     }
-
     public static int[][] getIntArr(List<String> list){
-        int rows = list.size();
-        int columns = (list.get(0).split("\\s")).length;
-        int[][] arr = new int[rows][columns];
-        for(int i=0;i<rows;i++){
+        int stroki = list.size();
+        int stolbzi = (list.get(0).split("\\s")).length;
+        int[][] arr = new int[stroki][stolbzi];
+        for(int i=0;i<stroki;i++){
             String[] row = list.get(i).split("\\s");
-            for(int j=0;j<columns;j++){
+            for(int j=0;j<stolbzi;j++){
                 arr[i][j]= Integer.parseInt(row[j]);
             }
         }
         return arr;
     }
-
     public static int[][] readFile(String inputPath) throws IOException {
-        Path path = Paths.get(parsePath(inputPath)).toAbsolutePath();
-        System.out.println("Input file path: " + path);
+        Path path = Paths.get(getPut(inputPath)).toAbsolutePath();
+        System.out.println("Входной файл: " + path);
         List<String> list = Files.readAllLines(path);
         return getIntArr(list);
     }
-
     public static void writeFile(String outputPath, String answer) throws FileNotFoundException {
-        File file = new File(parsePath(outputPath));
+        File file = new File(getPut(outputPath));
         PrintWriter pw = new PrintWriter(file);
         pw.println(answer);
         pw.close();
-        System.out.println("Output file path: " + Paths.get(parsePath(outputPath)).toAbsolutePath());
+        System.out.println("Выходной файл: " + Paths.get(getPut(outputPath)).toAbsolutePath());
     }
 }
