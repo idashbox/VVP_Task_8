@@ -1,11 +1,11 @@
 package Classes;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class MainLogicTask {
-
-    //обработка массива (основная логика)
-    public static String getAnswer(int[][] array, int n){
+    //обработка массива
+    public static int[][] getAnswer(int[][] array, int n){
         int [][] array_prob = new int [array.length][array[0].length];
         for (int i = 0; i < array.length; i++) {
             int [] prob = new int [array[i].length];
@@ -33,22 +33,31 @@ public class MainLogicTask {
             }
             array_prob2[(i+n)%array.length] = array_prob[i];
         }
-        return "Eth is OK";
+        return array_prob2;
     }
-
-    //метод чтения и записи результата
-    public static void readWriteMethod(InputArgs inputArgs) throws IOException {
-        int[][] arr = InOutClass.readFile(inputArgs.getInputFile());
-        String answer = MainLogicTask.getAnswer(arr, 1);
-        InOutClass.writeFile(inputArgs.getOutputFile(),answer);
+    public static String massivVStroki(int [][] array){
+        StringBuilder answer = new StringBuilder();
+        for (int [] mas : array){
+            for (int znach : mas){
+                answer.append(znach);
+                answer.append(" ");
+            }
+            answer.append("  ");
+        }
+        return answer.toString();
     }
-
-    //печать сообщения успешной работы
+//    .\input.txt .\output.txt
+    //метод для чтения и записи результата
+    public static void readAndWriteMethod(InputArgs inputArgs) throws IOException {
+        int[][] arr = ClassesForInAndOut.readFile(inputArgs.getInputFile());
+        String answer = MainLogicTask.massivVStroki(MainLogicTask.getAnswer(arr, 1));
+        ClassesForInAndOut.writeFile(inputArgs.getOutputFile(),answer);
+    }
     public static void printSuccessMessage(int num){
         if(num==0){
-            System.out.println("The main program is done");
+            System.out.println("Основная программа выполнена.");
         }else{
-            System.out.println("Test " + num + " is done");
+            System.out.println("Тест " + num + " выполнен успешно.");
         }
         System.out.println();
     }

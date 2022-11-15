@@ -1,6 +1,6 @@
 package Util;
 
-import Classes.InOutClass;
+import Classes.ClassesForInAndOut;
 import Classes.InputArgs;
 import Classes.MainLogicTask;
 import Classes.Test;
@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 
 import static Classes.MainLogicTask.printSuccessMessage;
-import static Classes.MainLogicTask.readWriteMethod;
+import static Classes.MainLogicTask.readAndWriteMethod;
 
 
 public class FrameMain extends JFrame{
@@ -25,6 +25,11 @@ public class FrameMain extends JFrame{
     private JButton writeFileBtn;
 
     private JPanel panelMain;
+    private JButton прочитатьФайл2Button;
+    private JButton прочитатьФайл3Button;
+    private JButton прочитатьФайл5Button;
+    private JButton прочитатьФайл4Button;
+    private JButton button1;
 
     static InputArgs inputArgs = new InputArgs();
 
@@ -54,7 +59,7 @@ public class FrameMain extends JFrame{
     public static void runSolutionTest(String[] pathArgs, int num) throws IOException {
         inputArgs.setInputFile(pathArgs[0]);
         inputArgs.setOutputFile(pathArgs[1]);
-        readWriteMethod(inputArgs);
+        readAndWriteMethod(inputArgs);
         printSuccessMessage(num);
     }
 
@@ -64,7 +69,7 @@ public class FrameMain extends JFrame{
 
         final int[] numAnswer = {0};
 
-        this.setTitle("Main program");
+        this.setTitle("Основная программа");
         this.setContentPane(panelMain);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
@@ -73,12 +78,12 @@ public class FrameMain extends JFrame{
 
         JTableUtils.initJTableForArray(table1,40,false,false,true, true);
 
-        //чтение файла и заполнение его в таблицу
+        //чтение файла и заполнение им таблицы
         readFileBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    int[][] arr = InOutClass.readFile(".\\input.txt");
+                    int[][] arr = ClassesForInAndOut.readFile(".\\input.txt");
                     JTableUtils.writeArrayToJTable(table1, arr);
                 }catch (Exception e){
                     SwingUtils.showErrorMessageBox(e);
@@ -91,19 +96,74 @@ public class FrameMain extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String answer = "Null";
-                //обработка нашего массива
+                //обработка массива
                 try {
-                    answer = MainLogicTask.getAnswer(JTableUtils.readIntMatrixFromJTable(table1), 1);
+                    answer = MainLogicTask.massivVStroki(MainLogicTask.getAnswer(JTableUtils.readIntMatrixFromJTable(table1), 1));
                 } catch (ParseException ex) {
                     throw new RuntimeException(ex);
                 }
                 try {
-                    InOutClass.writeFile(".\\output.txt", answer);
+                    ClassesForInAndOut.writeFile(".\\output.txt", answer);
                 } catch (FileNotFoundException ex) {
                     throw new RuntimeException(ex);
                 }
-                answerTextField.setText("New answer " + numAnswer[0] + " is been written in" +  Paths.get("output.txt").toAbsolutePath());
+                answerTextField.setText("Новый ответ " + numAnswer[0] + " будет записан в " +  Paths.get("output.txt").toAbsolutePath());
                 numAnswer[0] +=1;
+            }
+        });
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int[][] arr = ClassesForInAndOut.readFile(".\\input01.txt");
+                    JTableUtils.writeArrayToJTable(table1, arr);
+                }catch (Exception ee){
+                    SwingUtils.showErrorMessageBox(ee);
+                }
+            }
+        });
+        прочитатьФайл2Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int[][] arr = ClassesForInAndOut.readFile(".\\input02.txt");
+                    JTableUtils.writeArrayToJTable(table1, arr);
+                }catch (Exception ee){
+                    SwingUtils.showErrorMessageBox(ee);
+                }
+            }
+        });
+        прочитатьФайл3Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int[][] arr = ClassesForInAndOut.readFile(".\\input03.txt");
+                    JTableUtils.writeArrayToJTable(table1, arr);
+                }catch (Exception ee){
+                    SwingUtils.showErrorMessageBox(ee);
+                }
+            }
+        });
+        прочитатьФайл4Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int[][] arr = ClassesForInAndOut.readFile(".\\input04.txt");
+                    JTableUtils.writeArrayToJTable(table1, arr);
+                }catch (Exception ee){
+                    SwingUtils.showErrorMessageBox(ee);
+                }
+            }
+        });
+        прочитатьФайл5Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int[][] arr = ClassesForInAndOut.readFile(".\\input05.txt");
+                    JTableUtils.writeArrayToJTable(table1, arr);
+                }catch (Exception ee){
+                    SwingUtils.showErrorMessageBox(ee);
+                }
             }
         });
     }

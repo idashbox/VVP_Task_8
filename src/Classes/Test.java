@@ -1,7 +1,4 @@
 package Classes;
-
-import java.io.File;
-
 public class Test {
     public String testPath1In=".\\input01.txt",testPath1Out=".\\output01.txt";
     public String testPath2In=".\\input02.txt",testPath2Out=".\\output02.txt";

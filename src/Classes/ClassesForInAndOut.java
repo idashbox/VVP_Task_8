@@ -9,7 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class InOutClass {
+public class ClassesForInAndOut {
     private static String getPut(String str){
         String put = "";
         for(int i=2;i<str.length();i++){
