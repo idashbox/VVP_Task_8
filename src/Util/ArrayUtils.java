@@ -1,10 +1,6 @@
 package Util;
 
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Random;
+import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -139,7 +135,6 @@ public class ArrayUtils {
         return ArrayUtils.toPrimitive(arr);
     }
 
-    /*
     // "Магия" со Stream
 
     public static int[] strToIntArray(String str) {
@@ -149,7 +144,7 @@ public class ArrayUtils {
     public static double[] strToDoubleArray(String str) {
         return Arrays.stream(str.split("(\\s|[,;])+")).mapToDouble(Double::parseDouble).toArray();
     }
-    */
+
 
     public static String toString(int[] arr, String itemFormat) {
         if (arr == null) {

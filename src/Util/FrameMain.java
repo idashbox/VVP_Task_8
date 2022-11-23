@@ -25,7 +25,7 @@ public class FrameMain extends JFrame{
     private JButton writeFileBtn;
 
     private JPanel panelMain;
-    private JButton прочитатьФайл2Button;
+    private JButton JButton2;
     private JButton прочитатьФайл3Button;
     private JButton прочитатьФайл5Button;
     private JButton прочитатьФайл4Button;
@@ -122,7 +122,7 @@ public class FrameMain extends JFrame{
                 }
             }
         });
-        прочитатьФайл2Button.addActionListener(new ActionListener() {
+        JButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {

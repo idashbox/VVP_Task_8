@@ -42,7 +42,8 @@ public class MainLogicTask {
                 answer.append(znach);
                 answer.append(" ");
             }
-            answer.append("  ");
+            answer.append("\n");
+
         }
         return answer.toString();
     }
